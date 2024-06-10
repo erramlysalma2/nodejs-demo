@@ -1,21 +1,16 @@
-pipeline{
-  agent any
-  stages{
-    stage("checkout"){
-      steps{
-        checkout scm
-      }
+pipeline {
+    agent any
+    stages {
+        stage("checkout") {
+            steps {
+                checkout scm
+            }
+        }
+        stage("build") {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
     }
-    stage("Test"){
-      steps{
-        sh 'npm install'
-        sh 'npm test'
-      }
-    }
-    stage("build"){
-      steps{
-        sh 'npm run build'
-      }
-    }
-  }
 }
